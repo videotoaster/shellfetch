@@ -48,9 +48,9 @@ moveuplns () {
     printf "\e[${1}A\e[20C"
 }
 printf "\e[s" # save current position
-moveuplns "8" 
+moveuplns "8"
 printf "${col}$(whoami)@$(cat /etc/hostname)${reset}"
-moveuplns "7" 
+moveuplns "7"
 printf "${col}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${reset}"
 moveuplns "6"
 printf "${col}Shell:\e[0m $cleanname ($SHELL)${reset}"
@@ -60,4 +60,4 @@ moveuplns "4"
 printf "${col}POSIX compliant:\e[0m ${posixcomp}${reset}"
 if [ "$1" != "" ]; then
     SHELL="$restoreme"
-fi	
+fi
