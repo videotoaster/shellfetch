@@ -13,69 +13,47 @@ renderart() {
     logo="$(cat $1)"
     printf "${logo}\n\n"
 }
-if [ "$1" != "" ]; then
-    restoreme=$SHELL
-    SHELL="$1"
-fi
-case $SHELL in
-    "/usr/bin/bash")
+
+[ "$1" = "" ] && shell_name="$SHELL" || shell_name="$1"
+
+case $shell_name in
+    "/bin/bash"|"/usr/bin/bash")
         renderart "${LOGODIR}/bash.txt"
         cleanname="Bash"
-        col="\e[32m"
-        posixcomp="\e[32mMostly\e[0m"
+        col="[32m"
+        posixcomp="[32mMostly[0m"
         ;;
-    "/usr/bin/fish")
+    "/bin/fish"|"/usr/bin/fish")
         renderart "${LOGODIR}/fish.txt"
         cleanname="Fish"
-        col="\e[31m"
-        posixcomp="\e[31mBarely\e[0m"
+        col="[31m"
+        posixcomp="[31mBarely[0m"
         ;;
-    "/usr/bin/zsh")
+    "/bin/zsh"|"/usr/bin/zsh")
         renderart "${LOGODIR}/zsh.txt"
         cleanname="zsh"
-        col="\e[34m"
-        posixcomp="\e[32mEmulated\e[0m"
-        ;;
-    "/bin/bash")
-        renderart "${LOGODIR}/bash.txt"
-        cleanname="Bash"
-        col="\e[32m"
-        posixcomp="\e[32mMostly\e[0m"
-        ;;
-    "/bin/fish")
-        renderart "${LOGODIR}/fish.txt"
-        cleanname="Fish"
-        col="\e[31m"
-        posixcomp="\e[31mBarely\e[0m"
-        ;;
-    "/bin/zsh")
-        renderart "${LOGODIR}/zsh.txt"
-        cleanname="zsh"
-        col="\e[34m"
-        posixcomp="\e[32mEmulated\e[0m"
+        col="[34m"
+        posixcomp="[32mEmulated[0m"
         ;;
     *)
         renderart "${LOGODIR}/unknown.txt"
         cleanname="Unrecognized :("
-        col="\e[0m"
+        col="[0m"
         posixcomp="Unknown"
         ;;
 esac
-reset="\e[0m\e[u"
+reset="[0m[u"
 moveuplns () {
-    printf "\e[${1}A\e[20C"
+    printf "[${1}A[20C"
 }
-printf "\e[s" # save current position
-moveuplns "8" 
+printf "[s" # save current position
+moveuplns "8"
 printf "${col}$(whoami)@$(cat /etc/hostname)${reset}"
-moveuplns "7" 
+moveuplns "7"
 printf "${col}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${reset}"
 moveuplns "6"
-printf "${col}Shell:\e[0m $cleanname ($SHELL)${reset}"
+printf "${col}Shell:[0m $cleanname ($shell_name)${reset}"
 moveuplns "5"
-printf "${col}Kernel:\e[0m $(uname)${reset}"
+printf "${col}Kernel:[0m $(uname)${reset}"
 moveuplns "4"
-printf "${col}POSIX compliant:\e[0m ${posixcomp}${reset}"
-if [ "$1" != "" ]; then
-    SHELL="$restoreme"
-fi	
+printf "${col}POSIX compliant:[0m ${posixcomp}${reset}"
