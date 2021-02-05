@@ -18,37 +18,19 @@ if [ "$1" != "" ]; then
     SHELL="$1"
 fi
 case $SHELL in
-    "/usr/bin/bash")
+    "/bin/bash"|"/usr/bin/bash")
         renderart "${LOGODIR}/bash.txt"
         cleanname="Bash"
         col="\e[32m"
         posixcomp="\e[32mMostly\e[0m"
         ;;
-    "/usr/bin/fish")
+    "/bin/fish"|"/usr/bin/fish")
         renderart "${LOGODIR}/fish.txt"
         cleanname="Fish"
         col="\e[31m"
         posixcomp="\e[31mBarely\e[0m"
         ;;
-    "/usr/bin/zsh")
-        renderart "${LOGODIR}/zsh.txt"
-        cleanname="zsh"
-        col="\e[34m"
-        posixcomp="\e[32mEmulated\e[0m"
-        ;;
-    "/bin/bash")
-        renderart "${LOGODIR}/bash.txt"
-        cleanname="Bash"
-        col="\e[32m"
-        posixcomp="\e[32mMostly\e[0m"
-        ;;
-    "/bin/fish")
-        renderart "${LOGODIR}/fish.txt"
-        cleanname="Fish"
-        col="\e[31m"
-        posixcomp="\e[31mBarely\e[0m"
-        ;;
-    "/bin/zsh")
+    "/bin/zsh"|"/usr/bin/zsh")
         renderart "${LOGODIR}/zsh.txt"
         cleanname="zsh"
         col="\e[34m"
