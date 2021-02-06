@@ -14,46 +14,52 @@ renderart() {
     printf "${logo}\n\n"
 }
 
-[ "$1" = "" ] && shell_name="$SHELL" || shell_name="$1"
+if [ $# -eq 0 ]; then
+    parent=$(ps -o ppid= $$)
+    shell_name="$(ps -p $parent | grep -oP '(zsh|bash|ksh|dash|ash|fish)')"
+else
+    shell_name="$1"
+    echo argumentative
+fi
 
 case $shell_name in
-    "/bin/bash"|"/usr/bin/bash")
+    "/bin/bash"|"bash")
         renderart "${LOGODIR}/bash.txt"
         cleanname="Bash"
         col="[32m"
         posixcomp="[32mMostly[0m"
         ;;
-    "/bin/fish"|"/usr/bin/fish")
+    "/bin/fish"|"fish")
         renderart "${LOGODIR}/fish.txt"
         cleanname="Fish"
         col="[31m"
         posixcomp="[31mBarely[0m"
         ;;
-    "/bin/zsh"|"/usr/bin/zsh")
+    "/bin/zsh"|"zsh")
         renderart "${LOGODIR}/zsh.txt"
         cleanname="zsh"
         col="[34m"
         posixcomp="[32mEmulated[0m"
         ;;
-    "/bin/ksh"|"/usr/bin/ksh")
+    "/bin/ksh"|"ksh")
         renderart "${LOGODIR}/ksh.txt"
         cleanname="ksh"
         col="[33m"
         posixcomp="[32mYes[0m"
         ;;
-    "/bin/csh"|"/usr/bin/csh")
+    "/bin/csh"|"csh")
         renderart "${LOGODIR}/csh.txt"
         cleanname="csh"
         col="[31m"
         posixcomp="[32mYes[0m"
         ;;
-    "/bin/dash"|"/usr/bin/dash")
+    "/bin/dash"|"dash")
         renderart "${LOGODIR}/dash.txt"
         cleanname="dash"
         col="[36m"
         posixcomp="[32mYes[0m"
         ;;
-    "/bin/ash"|"/usr/bin/ash")
+    "/bin/ash"|"ash")
         renderart "${LOGODIR}/ash.txt"
         cleanname="ash"
         col="[32m"
