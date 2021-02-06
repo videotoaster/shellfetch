@@ -35,6 +35,30 @@ case $shell_name in
         col="[34m"
         posixcomp="[32mEmulated[0m"
         ;;
+    "/bin/ksh"|"/usr/bin/ksh")
+        renderart "${LOGODIR}/ksh.txt"
+        cleanname="ksh"
+        col="[33m"
+        posixcomp="[32mYes[0m"
+        ;;
+    "/bin/csh"|"/usr/bin/csh")
+        renderart "${LOGODIR}/csh.txt"
+        cleanname="csh"
+        col="[31m"
+        posixcomp="[32mYes[0m"
+        ;;
+    "/bin/dash"|"/usr/bin/dash")
+        renderart "${LOGODIR}/dash.txt"
+        cleanname="dash"
+        col="[36m"
+        posixcomp="[32mYes[0m"
+        ;;
+    "/bin/ash"|"/usr/bin/ash")
+        renderart "${LOGODIR}/ash.txt"
+        cleanname="ash"
+        col="[32m"
+        posixcomp="[32mYes[0m"
+        ;;
     *)
         renderart "${LOGODIR}/unknown.txt"
         cleanname="Unrecognized :("
